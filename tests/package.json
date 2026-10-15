@@ -1,0 +1,20 @@
+{
+  "name": "edge-sdn-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright unit, integration, end-to-end and UAT suites for EDGE-SDN",
+  "scripts": {
+    "test": "playwright test",
+    "test:unit": "playwright test --project=unit",
+    "test:integration": "playwright test --project=integration",
+    "test:e2e": "playwright test --project=e2e-mocked --project=e2e",
+    "test:e2e:mocked": "playwright test --project=e2e-mocked",
+    "test:e2e:live": "playwright test --project=e2e",
+    "test:uat": "playwright test --project=uat",
+    "report": "playwright show-report reports/html"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.0.0"
+  }
+}

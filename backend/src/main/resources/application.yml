@@ -1,0 +1,104 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: edge-sdn-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/edge_sdn
+    username: edge_sdn
+    password: edge_sdn
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+  task:
+    scheduling:
+      pool:
+        size: 4
+
+logging:
+  level:
+    com.edgesdn: INFO
+
+edge:
+  # Angular dev server origin(s). Only needed when the UI is NOT served through the ng proxy.
+  cors-origins:
+    - http://localhost:4200
+
+  # Python twin-agent running inside the Ubuntu VM (owns the live Mininet network and the digital twin).
+  agent:
+    base-url: http://localhost:8000
+    token: change-me-agent-token
+    connect-timeout-ms: 3000
+    read-timeout-ms: 120000
+
+  odl:
+    base-url: http://localhost:8181
+    data-path: /rests/data
+    username: admin
+    password: admin
+    timeout-ms: 10000
+
+  telemetry:
+    # ODL = port statistics from OpenDaylight; AGENT = interface counters read by the twin-agent.
+    source: ODL
+    poll-interval-ms: 10000
+    retention-hours: 48
+
+  prediction:
+    # RULE_BASED (no ML) or ML (calls the Python ML service; falls back to RULE_BASED if configured).
+    provider: ML
+    interval-ms: 60000
+    horizons-minutes: [15, 30, 60]
+    history-minutes: 60
+    auto-recommend: true
+
+  ml:
+    base-url: http://localhost:8001
+    timeout-ms: 30000
+    fallback-to-rule-based: true
+    api-key: ""
+
+  twin:
+    duration-sec: 8
+    min-class-demand-mbps: 1.0
+    max-flow-rate-mbps: 20.0
+
+  monitoring:
+    sample-interval-ms: 15000
+    consecutive-regressions: 2
+    probe-count: 5
+
+  network:
+    auto-init: true
+    meter-burst-kb: 100
+
+  security:
+    admin-username: admin
+    admin-password: admin123
+    viewer-username: viewer
+    viewer-password: viewer123
+
+  # Weights of the KPI-improvement sub-terms (normalised by their sum).
+  improvement:
+    target-link-util: 0.35
+    max-link-util: 0.25
+    latency: 0.25
+    loss: 0.15
+
+  # Weights of the risk sub-terms (normalised by their sum).
+  risk:
+    disruption: 0.30
+    path-stretch: 0.20
+    core-touch: 0.15
+    loss-spike: 0.15
+    priority-impact: 0.20

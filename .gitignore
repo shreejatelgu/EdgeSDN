@@ -1,0 +1,277 @@
+# ============================================================
+# EDGE-SDN - Root .gitignore
+# Spring Boot + Angular + Python ML + Twin Agent
+# ============================================================
+
+
+# ------------------------------------------------------------
+# OS / Editor files
+# ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+*.swp
+*.swo
+*~
+.history/
+
+
+# ------------------------------------------------------------
+# Environment variables / Secrets
+# NEVER commit credentials or API keys
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+secrets/
+credentials/
+
+
+# ------------------------------------------------------------
+# Logs / Runtime files
+# ------------------------------------------------------------
+*.log
+logs/
+log/
+
+*.pid
+*.pid.lock
+
+tmp/
+temp/
+.cache/
+
+
+# ============================================================
+# JAVA / SPRING BOOT / MAVEN
+# ============================================================
+
+**/target/
+**/bin/
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Java compiled files
+*.class
+
+# Java packages
+*.jar
+*.war
+*.ear
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+
+
+# ============================================================
+# ANGULAR / NODE / NPM
+# ============================================================
+
+**/node_modules/
+
+# Angular build output
+**/dist/
+**/.angular/
+
+# Node / npm cache
+.npm/
+.npm-cache/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local Angular cache
+.angular/
+
+# Coverage
+coverage/
+**/coverage/
+
+# TypeScript cache
+*.tsbuildinfo
+
+
+# ============================================================
+# PYTHON - ML SERVICE / TWIN AGENT
+# ============================================================
+
+__pycache__/
+**/__pycache__/
+
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+.venv/
+**/.venv/
+venv/
+**/venv/
+env/
+**/env/
+
+# Python tooling
+.pytest_cache/
+**/.pytest_cache/
+
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+.coverage
+.coverage.*
+htmlcov/
+
+*.egg
+*.egg-info/
+.eggs/
+
+build/
+develop-eggs/
+downloads/
+wheels/
+
+
+# ============================================================
+# MACHINE LEARNING
+# ============================================================
+
+# Trained model files
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.keras
+*.joblib
+*.pkl
+*.pickle
+
+# Model/checkpoint directories
+models/
+**/models/
+
+checkpoints/
+**/checkpoints/
+
+runs/
+**/runs/
+
+artifacts/
+**/artifacts/
+
+# TensorBoard
+tensorboard/
+**/tensorboard/
+
+# ML experiment tracking
+mlruns/
+wandb/
+
+
+# ============================================================
+# EDGE-SDN TRAINING DATA
+# ============================================================
+
+# Generated telemetry/training datasets.
+# These can become large and can always be exported again.
+
+ml-service/data/*.csv
+ml-service/data/*.parquet
+ml-service/data/*.json
+ml-service/data/*.npy
+ml-service/data/*.npz
+
+# Keep documentation/placeholders if required
+!ml-service/data/.gitkeep
+!ml-service/data/README.md
+
+
+# ============================================================
+# TWIN AGENT / MININET
+# ============================================================
+
+# Python-generated runtime state
+twin-agent/**/*.log
+twin-agent/**/*.pid
+
+# Temporary simulation results
+twin-agent/results/
+twin-agent/tmp/
+
+# Mininet temporary/runtime files
+*.mn
+*.pcap
+
+
+# ============================================================
+# DATABASE / REDIS
+# ============================================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+dump.rdb
+appendonly.aof
+
+# PostgreSQL dump files
+*.dump
+*.sql.gz
+
+
+# ============================================================
+# TEST OUTPUT
+# ============================================================
+
+test-results/
+**/test-results/
+
+playwright-report/
+**/playwright-report/
+
+coverage.xml
+junit.xml
+
+
+# ============================================================
+# ARCHIVES / TEMPORARY BACKUPS
+# ============================================================
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+*.bak
+*.backup
+*.old
+*.orig
+
+
+# ------------------------------------------------------------
+# Miscellaneous temporary files
+# ------------------------------------------------------------
+*.tmp
+*.temp
