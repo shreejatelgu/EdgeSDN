@@ -58,6 +58,13 @@ export class ApiService {
   }
   stopLiveTraffic(): Observable<Record<string, unknown>> { return this.http.post<Record<string, unknown>>(`${this.base}/scenarios/live-traffic/stop`, {}); }
   mlStatus(): Observable<Record<string, any>> { return this.http.get<Record<string, any>>(`${this.base}/ml/status`); }
+  counterfactuals(linkId: string, horizonMinutes: number, targetUtilization: number, maxChanges = 2):
+      Observable<{ counterfactuals: { description: string; predictedUtilization: number }[] }> {
+    const params = new HttpParams().set('linkId', linkId).set('horizonMinutes', horizonMinutes)
+      .set('targetUtilization', targetUtilization).set('maxChanges', maxChanges);
+    return this.http.get<{ counterfactuals: { description: string; predictedUtilization: number }[] }>(
+      `${this.base}/ml/counterfactual`, { params });
+  }
   setProvider(provider: string): Observable<{ activeProvider: string }> {
     return this.http.put<{ activeProvider: string }>(`${this.base}/ml/provider`, { provider });
   }

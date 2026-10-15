@@ -222,6 +222,8 @@ twin-agent/tmp/
 *.mn
 *.pcap
 
+twin-agent/mininet/.mininet/
+twin-agent/agent.env
 
 # ============================================================
 # DATABASE / REDIS
